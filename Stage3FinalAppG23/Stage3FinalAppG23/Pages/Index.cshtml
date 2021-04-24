@@ -1,10 +1,90 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
+@{ 
+    ViewData["Title"] = "Elanco Rebates"; 
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.ID))
+        {
+<div class="dynamic-logged-out">
+    <a asp-page="/Using/Login">Register | Log In</a>
+</div> }
+            else
+            {
+<div class="dynamic-logged-in">
+    <a asp-page="/Using/Account">Your Account</a>
+    <a asp-page="/Using/SignOut">Sign Out</a>
+</div>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+<div class="section-container">
+    <h1>Elanco Rebates Center</h1>
+    <h5 class="small-print-invalid">You Must Have A Valid Receipt On Hand Before You Start The Form</h5>
+    <div class="rebate-stages">
+        <p class="small-print">Follow these simple steps to redeem your rebate.</p>
+        <div class="rebate-stages-container">
+            <div class="rebate-stage-1">
+                <img src="Images/Icon-1.png" width="80" height="70" />
+                <p class="rebate-stage-print">Complete Online Form</p>
+            </div>
+            <div class="rebate-stage-2">
+                <img src="Images/Icon-2.png" width="80" height="70" />
+                <p class="rebate-stage-print">Track Rebate Submission</p>
+            </div>
+            <div class="rebate-stage-3">
+                <img src="Images/Icon-3.png" width="80" height="70" />
+                <p class="rebate-stage-print">Receive Rebate</p>
+            </div>
+        </div>
+    </div>
+    <h2>Rebates</h2>
+    <p class="small-print-rebate">To redeem your rebate*, find your product below and select redeem. Alternatively, search for the item or offer code and select search. You can also filter the rebates list.</p>
+    <div class="search-form">
+        <form class="rebate-search-form" method="post">
+            <p class="small-print-invalid">@Model.MessageInvalid</p>
+            <input class="rebate-search-input" type="text" asp-for="searchString" placeholder="Search Product or Offer Code" />
+            <button class="rebate-search-search" asp-page-handler="Search" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="filter-box">
+        <p class="small-print-rebate">Filter</p>
+        <form method="post">
+            <div class="filters">
+                @foreach (var productItem in Model.FilterTypeList)
+                {
+    <input id="@productItem" asp-page-handler="FilteringType" asp-for="Filter" value="@productItem" type="submit" />}
+            </div>
+        </form>
+    </div>
+    <div class="rebates-list">
+        <p class="no-results">@Model.Message</p>
+        @for (int i = 0; i < Model.productsList.Count; i++)
+        {
+<div class="rebates-box">
+    <div class="rebates-name-dates">
+        <img src="~/Images/@Model.productsList[i].LogoFile" height="40" width="80" alt="@Model.productsList[i].Name" />
+        <p class="rebates-dates">@Model.productsList[i].StartDate - @Model.productsList[i].EndDate</p>
+    </div>
+    <p>@Model.productsList[i].Description</p>
+    <div class="buttons">
+        <a asp-page="/Using/UploadReceipt" asp-route-id="@Model.productsList[i].ID" class="continue-button">Redeem</a>
+    </div>
+</div>}
+    </div>
 </div>
