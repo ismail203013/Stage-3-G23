@@ -1,0 +1,60 @@
+﻿@page
+@model Stage3FinalAppG23.Pages.Using.SignUpModel
+@{ ViewData["Title"] = "Register";
+                Model.OnGet(); }
+
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.ID))
+        {
+<a asp-page="/Using/Login">Register | Log In</a> }
+            else
+            {
+<a asp-page="/Using/Account">Your Account</a>
+                <a asp-page="/Using/SignOut">Sign Out</a>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+<div class="section-container">
+    <p class="small-print-login">You can register an account to speed up the rebate forms process.</p>
+    <form method="post" class="login-form">
+        <p class="small-print-invalid">@Model.ErrorMessage</p>
+        <div class="short-input-fields">
+            <div class="input-wrapper-short-1">
+                <label>First Name: <span>*</span></label>
+                <input asp-for="currentUser.FirstName" class="short-input" type="text" placeholder="John" required />
+            </div>
+            <div class="input-wrapper-short-2">
+                <label>Last Name: <span>*</span></label>
+                <input asp-for="currentUser.LastName" class="short-input" type="text" placeholder="Jones" required />
+            </div>
+        </div>
+        <div class="input-wrapper">
+            <label>Email Address: <span>*</span></label>
+            <input asp-for="currentUser.EmailAddress" class="login-email" type="email" placeholder="John@gmail.com" required />
+        </div>
+        <div class="input-wrapper">
+            <label>Password: <span>*</span></label>
+            <input asp-for="currentUser.Password" class="login-password" type="password" placeholder="*******" required />
+            <input asp-for="currentUser.redoPassword" class="re-type-password" type="password" placeholder="Confirm Password" required />
+        </div>
+        <div class="buttons">
+            <input class="continue-button-input" type="submit" value="Create Account" />
+            <a asp-page="/Using/Login" class="back-button">Back</a>
+        </div>
+    </form>
+</div>
