@@ -1,4 +1,57 @@
 ﻿@page
 @model Stage3FinalAppG23.Pages.Using.LoginModel
 @{
+    ViewData["Title"] = "Log In";
 }
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.Id))
+        {
+<div class="dynamic-logged-out">
+    <a id="register-login" asp-page="/Using/LogIn">Register | Log In</a>
+</div> }
+            else
+            {
+<div class="dynamic-logged-in">
+    <a asp-page="/Using/Account">Your Account</a>
+    <a asp-page="/Using/SignOut">Sign Out</a>
+</div>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+
+<div class="section-container">
+    <p class="small-print-login">You can log in to speed up the rebate forms process or continue as a guest.</p>
+    <form method="post" class="login-form">
+        <p class="small-print-invalid">@Model.Message</p>
+        <input asp-for="usr.EmailAddress" class="login-email" type="email" placeholder="john123@elanco.com" required />
+        <input asp-for="usr.Password" class="login-password" type="password" placeholder="**************" required />
+        <div class="buttons">
+            <input class="continue-button-input" type="submit" value="Login" />
+        </div>
+    </form>
+    <p class="small-print-no-account">Not got an Account?</p>
+    <div class="buttons">
+        <a asp-page="/Using/SignUp" class="register-button">Register</a>
+    </div>
+    @if (!string.IsNullOrEmpty(Model.ProductID))
+    {
+<div class="small-print-underlined-italic">
+    <a id="continue-as-guest" asp-page="/Using/Clinic">Or Continue as Guest</a>
+</div>}
+</div>
+
