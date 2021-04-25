@@ -1,0 +1,40 @@
+﻿@page
+@model Stage3FinalAppG23.Pages.Using.SignOutModel
+@{ ViewData["Title"] = "Sign Out";
+                Model.OnGet(); }
+
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.ID))
+        {
+<a asp-page="/Using/Login">Register | Log In</a> }
+            else
+            {
+<a asp-page="/Using/Account">Your Account</a>
+                <a asp-page="/Using/SignOut">Sign Out</a>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+
+<div class="section-container">
+    <div class="sign-out">
+        <p>@Model.Message</p>
+    </div>
+    <div class="buttons">
+        <a asp-page="/Using/Login" class="continue-button">Log In</a>
+    </div>
+</div>
