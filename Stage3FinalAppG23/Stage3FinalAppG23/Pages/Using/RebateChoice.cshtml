@@ -1,0 +1,71 @@
+﻿@page
+@model Stage3FinalAppG23.Pages.Using.RebateChoiceModel
+@{ ViewData["Title"] = "Rebate Selection"; }
+
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.ID))
+        {
+<a asp-page="/Using/Login">Register | Log In</a> }
+            else
+            {
+<a asp-page="/Using/Account">Your Account</a>
+                <a asp-page="/Using/SignOut">Sign Out</a>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+<div id="progress-header">
+    <div class="progress-bar-border">
+        <div id="progress-bar"></div>
+    </div>
+    <h1>Rebate Selection</h1>
+    <p class="small-print-progress">Select your rebate method, then tap continue.</p>
+</div>
+
+<div class="section-container">
+    <form method="post">
+        <div class="details-details">
+            <h3>Rebate Selection</h3>
+            <p class="small-print-invalid">
+                @Model.Message
+            </p>
+            @foreach (var Option in Model.Choices)
+            {
+<div class="selection-container">
+    <div class="radio-select">
+        <div>
+            <input id="@Option.Name" type="radio" asp-for="Rebate" value="@Option.Name" />
+        </div>
+        <div class="radio-select-info">
+            <p class="radio-select-name">@Option.Name</p>
+            <label for="@Option.Name">
+                <img src="~/Images/Rebate Card.jpg" width="250" height="125" />
+            </label>
+            <p class="small-print-rebate">@Option.Description</p>
+        </div>
+    </div>
+
+</div>            }
+        </div>
+
+        <div class="buttons">
+            <button class="continue-button-input" type="submit">Continue</button>
+            <a asp-page="/Using/PetDetails" class="back-button">Back</a>
+        </div>
+
+    </form>
+</div>
