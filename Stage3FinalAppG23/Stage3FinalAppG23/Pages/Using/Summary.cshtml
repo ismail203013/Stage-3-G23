@@ -1,0 +1,210 @@
+﻿@page
+@model Stage3FinalAppG23.Pages.Using.SummaryModel
+@{
+    ViewData["Title"] = "Summary";
+    Model.OnGet();
+}
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+    <script>
+        function myFunction() {
+            alert("Thank You For Submitting Our Form");
+        }
+    </script>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.ID))
+        {
+            <div class="dynamic-logged-out">
+                <a id="register-login" asp-page="/Using/LogIn">Register | Log In</a>
+            </div>
+        }
+        else
+        {
+            <div class="dynamic-logged-in">
+                <a asp-page="/Using/Account">Your Account</a>
+                <a asp-page="/Using/SignOut">Sign Out</a>
+            </div>
+        }
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+<div id="progress-header">
+    <div class="progress-bar-border">
+        <div id="progress-bar"></div>
+    </div>
+    <h1>Summary</h1>
+    <p class="small-print-progress">Make sure all details provided are accurate, then hit submit.</p>
+</div>
+
+<div class="section-container">
+    <form method="post">
+        <div class="details-details">
+            <h3 class="h3-summary">Rebate Details</h3>
+            <div class="image-dates">
+                <div class="image-summary">
+                    <img src="~/Images/@Model.product.File" width="80" height="75" />
+                </div>
+                <div class="dates-summary">
+                    <h4>@Model.product.Name</h4>
+                    <h5>Offer Dates:</h5>
+                    <p class="small-print-warning"> @Model.product.StartDate - @Model.product.EndDate </p>
+                </div>
+            </div>
+            <p class="small-print-warning">
+                @Model.product.Description
+            </p>
+            <p class="small-print-terms">Terms and Conditions Apply</p>
+        </div>
+
+        <div class="details-details">
+            <h3 class="h3-summary">Rebate Selection</h3>
+            <div class="rebate-summary">
+                <h5>@Model.rebate.Name</h5>
+                <img src="~/Images/Rebate Card.jpg" width="250" height="125" />
+                <p class="small-print-rebate">@Model.rebate.Description</p>
+            </div>
+            <a asp-page="/Using/RebateChoice" style="margin-top: 12px" class="register-button">Edit</a>
+        </div>
+
+        <div class="details-container">
+            <div class="details-header">
+                <h3>Clinic Details</h3>
+                <div class="details-burger-1">
+                    <div class="row-1-X"></div>
+                    <div class="row-2-Y"></div>
+                </div>
+            </div>
+            <div class="account-form-1">
+                <div class="input-wrapper">
+                    <label>Clinic Name:</label>
+                    <input class="long-input" readonly asp-for="CurrentCL.Name" />
+                </div>
+                <div class="input-wrapper">
+                    <label>Clinic Address:</label>
+                    <input class="long-input" readonly asp-for="CurrentCL.Address" />
+                </div>
+                <div class="input-wrapper">
+                    <label>Clinic State:</label>
+                    <input class="long-input" readonly asp-for="CurrentCL.state" />
+                </div>
+                <div class="short-input-fields">
+                    <div class="input-wrapper-short-1">
+                        <label>Clinic Country:</label>
+                        <input class="short-input" readonly asp-for="CurrentCL.country" />
+                    </div>
+                    <div class="input-wrapper-short-2">
+                        <label>Clinic Zipcode:</label>
+                        <input class="short-input" readonly asp-for="CurrentCL.zipcode" />
+                    </div>
+                </div>
+            </div>
+            <a asp-page="/Using/Clinic" style="margin-top: 12px" class="register-button">Edit</a>
+        </div>
+        <div class="details-container">
+            <div class="details-header">
+                <h3>Personal Details</h3>
+                <div class="details-burger-2">
+                    <div class="row-1-X"></div>
+                    <div class="row-2-Y"></div>
+                </div>
+            </div>
+            <div class="account-form-2">
+                <div class="short-input-fields">
+                    <div class="input-wrapper-short-1">
+                        <label>First Name:</label>
+                        <input class="short-input" readonly asp-for="CurrentDT.FirstName" />
+                    </div>
+                    <div class="input-wrapper-short-2">
+                        <label>Last Name:</label>
+                        <input class="short-input" readonly asp-for="CurrentDT.LastName" />
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <label>Email Address:</label>
+                    <input class="long-input" readonly asp-for="CurrentDT.Email" />
+                </div>
+                <div class="input-wrapper">
+                    <label>Phone Number:</label>
+                    <input class="long-input" readonly asp-for="CurrentDT.phoneNumber" />
+                </div>
+                <div class="input-wrapper">
+                    <label>Street Address:</label>
+                    <input class="long-input" readonly asp-for="CurrentDT.Address" />
+                </div>
+                <div class="short-input-fields">
+                    <div class="input-wrapper-short-1">
+                        <label>Apartment:</label>
+                        <input class="short-input" readonly asp-for="CurrentDT.Apartment" />
+                    </div>
+                    <div class="input-wrapper-short-2">
+                        <label>Zipcode:</label>
+                        <input class="short-input" readonly asp-for="CurrentDT.zipcode" />
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <label>City:</label>
+                    <input class="long-input" readonly asp-for="CurrentDT.City" />
+                </div>
+                <div class="short-input-fields">
+                    <div class="input-wrapper-short-1">
+                        <label>Country:</label>
+                        <input class="short-input" readonly asp-for="CurrentDT.Country" />
+                    </div>
+                    <div class="input-wrapper-short-2">
+                        <label>State:</label>
+                        <input class="short-input" readonly asp-for="CurrentDT.state" />
+                    </div>
+                </div>
+            </div>
+            <a asp-page="/Using/Details" style="margin-top: 12px" class="register-button">Edit</a>
+        </div>
+        <div class="details-container">
+            <div class="details-header">
+                <h3>Pet Details</h3>
+                <div class="details-burger-3">
+                    <div class="row-1-X"></div>
+                    <div class="row-2-Y"></div>
+                </div>
+            </div>
+            <div class="account-form-3">
+                <div class="input-wrapper">
+                    <label>Pet Name:</label>
+                    <input class="long-input" readonly asp-for="CurrentPet.Name" />
+                </div>
+                <div class="input-wrapper">
+                    <label>Pet Date Of Birth:</label>
+                    <input class="long-input" readonly asp-for="CurrentPet.DOB" />
+                </div>
+            </div>
+            <a asp-page="/Using/PetDetails" style="margin-top: 12px" class="register-button">Edit</a>
+        </div>
+        @if (string.IsNullOrEmpty(Model.ReceiptFilePath))
+        {
+            <div>
+                <p class="small-print-invalid">@Model.Message</p>
+            </div>
+        }
+        <div class="buttons">
+            <button class="continue-button" onclick="myFunction()"> Submit Rebate</button>
+            <p class="small-print-warning">
+                By submitting your rebate, you agree to the Elanco prepaid
+                MasterCard terms and conditions and expiration. You also acknowledge Elanco's privacy notice
+                and terms of use.
+            </p>
+            <a asp-page="/Index" class="cancel-button">Cancel Rebate</a>
+        </div>
+    </form>
+</div>
