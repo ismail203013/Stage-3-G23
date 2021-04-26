@@ -11,7 +11,7 @@ using Stage3FinalAppG23.Pages.Database;
 
 namespace Stage3FinalAppG23.Pages.Using
 {
-    public class PetModel : PageModel
+    public class PetDetailsModel : PageModel
     {
         [BindProperty]
         public Pet CurrentPet { get; set; }
