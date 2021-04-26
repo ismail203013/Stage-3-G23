@@ -16,13 +16,10 @@ namespace Stage3FinalAppG23.Pages.Using
         public List<string> ReceiptClinicState = new List<string> { "California", "Florida", "Arkansas" };
         public List<string> ReceiptClinicCountry = new List<string> { "US", "US", "US" };
         public List<string> ReceiptClinicZipCode = new List<string> { "12345", "67890", "24680" };
-
-        /// <RedirectcCheck>
         public string ClinicNameCheck { get; set; }
         public string UserAddressCheck { get; set; }
         public string PetNameCheck { get; set; }
         public string RebateName { get; set; }
-        /// </summary>
 
         public string ReceiptFilePath { get; set; }
 
