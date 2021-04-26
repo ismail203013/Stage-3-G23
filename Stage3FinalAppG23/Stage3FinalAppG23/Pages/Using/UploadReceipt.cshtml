@@ -1,0 +1,68 @@
+﻿@page
+@model Stage3FinalAppG23.Pages.Using.UploadReceiptModel
+@{ ViewData["Title"] = "Receipt"; }
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.Id))
+        {
+<a asp-page="/Using/Login">Register | Log In</a> }
+            else
+            {
+<a asp-page="/Using/Account">Your Account</a>
+                <a asp-page="/Using/SignOut">Sign Out</a>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+<div id="progress-header">
+    <div class="progress-bar-border">
+        <div id="progress-bar"></div>
+    </div>
+    <h1>Purchase Details</h1>
+    <p class="small-print-progress">Upload Your Receipt(s), then tap continue.</p>
+</div>
+<form enctype="multipart/form-data">
+    <div class="section-container">
+        <p class="small-print-main">Upload a scan or photo of your original licensed veterinary invoice that includes the purchase of the product that qualifies for this rebate offer. Please reference the example invoice that highlights the information required for a valid rebate submission.</p>
+        <img class="recieptimg" src="~/Images/Invoice-Example.png" width="100%" />
+        <div class="upload-files">
+            <h3>Upload Files</h3>
+            <p class="small-print-files">Files should be JPEG, PNG, PDF</p>
+            <div class="file-border">
+                <input class="file-uploader-input" type="file" asp-for="ReceiptFile" onchange="readURL(this)" accept="image/*" />
+                <img src="~/Images/Icon awesome-folder-open.png" width="50" height="40" />
+                <p class="small-print-add-files">Tap to add files</p>
+            </div>
+        </div>
+        <h3 id="your-files">Your Files</h3>
+
+        <div id="uploaded-files">
+            <img src="" id="Img" width="50" height="50" />
+            <img src="~/Images/Icon metro-bin.png" width="15" height="20" />
+        </div>
+
+        <div class="buttons">
+            @if (string.IsNullOrEmpty(Model.Id))
+            {
+                <a asp-page="/Using/LogIn" class="continue-button" asp-route-id="@Model.SimulateReceipt">Continue</a> 
+            }
+            else
+            {
+                <a asp-page="/Using/Clinic" class="continue-button" asp-route-id="@Model.SimulateReceipt">Continue</a>            }
+            <a asp-page="/Index" class="back-button">Back</a>
+        </div>
+    </div>
+</form>
