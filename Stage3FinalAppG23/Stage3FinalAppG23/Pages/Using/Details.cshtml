@@ -1,0 +1,101 @@
+﻿@page
+@model Stage3FinalAppG23.Pages.Using.DetailsModel
+@{
+    ViewData["Title"] = "Clinic Details";
+    Model.OnGet();
+}
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.ID))
+        {
+<a asp-page="/Using/Login">Register | Log In</a> }
+            else
+            {
+<a asp-page="/Using/Account">Your Account</a>
+                <a asp-page="/Using/SignOut">Sign Out</a>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+<div id="progress-header">
+    <div class="progress-bar-border">
+        <div id="progress-bar"></div>
+    </div>
+    <h1>Confirm Your Details</h1>
+    <p class="small-print-progress">Make sure your details are correct, then tap continue.</p>
+</div>
+<div class="section-container">
+    <form method="post">
+        <p class="small-print-main">Check your details which we've imported from the uploaded receipt and your account details.</p>
+        <div class="details-details">
+            <h3>Personal Details</h3>
+
+            <p class="small-print-invalid">@Model.ErrorMessage</p>
+
+            <div class="short-input-fields">
+                <div class="input-wrapper-short-1">
+                    <label>First Name: <span>*</span></label>
+                    <input class="short-input" placeholder="John *" required asp-for="CurrentUserDetails.FirstName" />
+                </div>
+                <div class="input-wrapper-short-2">
+                    <label>Last Name: <span>*</span></label>
+                    <input class="short-input" placeholder="Smith *" required asp-for="CurrentUserDetails.LastName" />
+                </div>
+            </div>
+            <div class="input-wrapper">
+                <label>Email Address: <span>*</span></label>
+                <input class="long-input" placeholder="john@elanco.com" required asp-for="CurrentUserDetails.Email" />
+                <input class="long-input" placeholder="Re-Enter Email" required asp-for="CurrentUserDetails.redoEmail" />
+            </div>
+            <div class="input-wrapper">
+                <label>Phone Number:</label>
+                <input class="long-input" placeholder="278-401-291" asp-for="CurrentUserDetails.phoneNumber" />
+            </div>
+            <div class="input-wrapper">
+                <label>Street Address: <span>*</span></label>
+                <input class="long-input" placeholder="123 Blenheim Court" required asp-for="CurrentUserDetails.Address" />
+            </div>
+            <div class="short-input-fields">
+                <div class="input-wrapper-short-1">
+                    <label>Apartment:</label>
+                    <input class="short-input" placeholder="Apartment" asp-for="CurrentUserDetails.Apartment" />
+                </div>
+                <div class="input-wrapper-short-2">
+                    <label>Zipcode: <span>*</span></label>
+                    <input class="short-input" placeholder="60192" required maxlength="5" asp-for="CurrentUserDetails.zipcode" />
+                </div>
+            </div>
+            <div class="input-wrapper">
+                <label>City: <span>*</span></label>
+                <input class="long-input" placeholder="Sacremento" required asp-for="CurrentUserDetails.City" />
+            </div>
+            <div class="short-input-fields">
+                <div class="input-wrapper-short-1">
+                    <label>Country: <span>*</span></label>
+                    <input class="short-input" placeholder="US" required asp-for="CurrentUserDetails.Country" />
+                </div>
+                <div class="input-wrapper-short-2">
+                    <label>State: <span>*</span></label>
+                    <input class="short-input" placeholder="California" required asp-for="CurrentUserDetails.state" />
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="continue-button-input" asp-page-handler="Details" type="submit">Continue</button>
+            <a class="back-button" asp-page="/Using/Clinic">Back</a>
+        </div>
+    </form>
+</div>
