@@ -1,0 +1,88 @@
+﻿@page
+@model Stage3FinalAppG23.Pages.Using.PetModel
+@{ ViewData["Title"] = "Pet Details"; }
+<div class="header-container">
+    <img src="~/Images/Logo.png" width="75" height="50" />
+    <div class="burger">
+        <div class="row-1"></div>
+        <div class="row-2"></div>
+        <div class="row-3"></div>
+    </div>
+</div>
+<div id="burger-menu">
+    <nav>
+        @if (string.IsNullOrEmpty(Model.ID))
+        {
+<div class="dynamic-logged-out">
+    <a id="register-login" asp-page="/Using/LogIn">Register | Log In</a>
+</div> }
+            else
+            {
+<div class="dynamic-logged-in">
+    <a asp-page="/Using/Account">Your Account</a>
+    <a asp-page="/Using/SignOut">Sign Out</a>
+</div>}
+        <hr>
+        <a asp-page="/Index">Submit</a>
+        <a href="#">Track</a>
+        <a href="#">Card Account</a>
+        <a href="#">FAQ</a>
+        <a href="#">Rebate Form</a>
+        <a href="#">Contact Us</a>
+    </nav>
+</div>
+
+<div id="progress-header">
+    <div class="progress-bar-border">
+        <div id="progress-bar"></div>
+    </div>
+    <h1>Confirm Your Pet</h1>
+    <p class="small-print-progress">Make sure your details are correct, then tap continue.</p>
+</div>
+<div class="section-container">
+    <p class="small-print-main">Check your pet details which we've imported from the uploaded receipt and your account details.</p>
+    <div class="details-details">
+        <h3>Pet Details</h3>
+        <p class="small-print-invalid">
+            @Model.Message
+        </p>
+        <form method="post">
+            <div class="details-details">
+                @if (!string.IsNullOrEmpty(Model.ID) && Model.PetList.Count > 0)
+                {
+    @foreach (var Option in Model.PetList)
+    {
+<p>@Option.Name</p>
+                    <div>
+                        <input id="@Option.Name" type="radio" asp-for="RadioString" value="@Option.Name" />
+                    </div>}
+                    <b><i>--Select One Of Your Pets Or Enter A Pet Name--</i></b>}
+
+                @if (Model.PetList.Count == 0)
+                {
+    <div class="input-wrapper">
+        <label>Pet Name: <span>*</span></label>
+        <input placeholder="Sparky" required class="long-input" asp-for="CurrentPet.Name" />
+    </div> }
+                else
+                {
+    <div class="input-wrapper">
+        <label>Pet Name:</label>
+        <input placeholder="Sparky" class="long-input" asp-for="CurrentPet.Name" />
+    </div>}
+
+                <div class="input-wrapper">
+                    <label>Pet Date Of Birth:</label>
+                    <input type="date" class="long-input" asp-for="CurrentPet.DOB" />
+                </div>
+
+            </div>
+            <div class="buttons">
+                <button class="continue-button-input" type="submit">Continue</button>
+                <a class="back-button" asp-page="/Using/Details">Back</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
