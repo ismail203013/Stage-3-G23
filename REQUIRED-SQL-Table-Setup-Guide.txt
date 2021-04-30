@@ -1,0 +1,83 @@
+NOTE: This software will not run until you have implemented the SQL tables. SQL code can be found below.
+
+Step 1: Open Visual Studio 2019
+
+Step 2: > Using VS Navigation bar 
+		> View 
+		> SQL Server Object Explorer
+		> This will open SQL Server Object Explorer
+		> Click on the arrow for SQL Server
+		> Click on the arrow for localdb
+		> Right click Database folder
+		> Add new Database (Database name and location does not matter)
+
+Step 3: > Open the new database
+		> Open tables folder 
+		> Right click and add new table 
+		
+Step 4: First table we will create is Products. Copy and paste this code below:
+
+				CREATE TABLE [dbo].[Products] (
+					[ProductID]          INT            IDENTITY (1, 1) NOT NULL,
+					[ProductName]        NVARCHAR (MAX) NOT NULL,
+					[ProductStartDate]   NVARCHAR (50)  NOT NULL,
+					[ProductEndDate]     NVARCHAR (50)  NOT NULL,
+					[ProductDescription] NVARCHAR (MAX) NOT NULL,
+					[ProductFilterType]  NVARCHAR (MAX) NOT NULL,
+					[ProductFile]        NVARCHAR (50)  NOT NULL,
+					[ProductLogo]        NVARCHAR (50)  NULL,
+					CONSTRAINT [PK_Student] PRIMARY KEY CLUSTERED ([ProductID] ASC)
+				);
+
+		> Click 'Update' to update your table
+		
+Step 5: > Right click the tables folder and add new table
+		> Last table we will create is Users. Copy and paste this code below:
+		
+				CREATE TABLE [dbo].[UserDBO] (
+					[UserID]            INT            IDENTITY (1, 1) NOT NULL,
+					[UserFirstName]     NVARCHAR (50)  NOT NULL,
+					[UserLastName]      NVARCHAR (50)  NOT NULL,
+					[UserEmailAddress]  NVARCHAR (MAX) NOT NULL,
+					[UserPassword]      NVARCHAR (50)  NOT NULL,
+					[UserPhoneNumber]   NVARCHAR (50)  NULL,
+					[UserStreetAddress] NVARCHAR (MAX) NULL,
+					[UserApartment]     NVARCHAR (50)  NULL,
+					[UserZipCode]       NVARCHAR (50)  NULL,
+					[UserCity]          NVARCHAR (50)  NULL,
+					[UserCountry]       NVARCHAR (50)  NULL,
+					[UserState]         NVARCHAR (50)  NULL,
+					[UserPet1Name]      NVARCHAR (50)  NULL,
+					[UserPet1Birthday]  NVARCHAR (50)  NULL,
+					[UserPet2Name]      NVARCHAR (50)  NULL,
+					[UserPet2Birthday]  NVARCHAR (50)  NULL,
+					[UserPet3Name]      NVARCHAR (50)  NULL,
+					[UserPet3Birthday]  NVARCHAR (50)  NULL,
+					PRIMARY KEY CLUSTERED ([UserID] ASC)
+				);
+				
+		> Click 'Update' to update your table 
+		
+Step 6: > Now, we need to add in some data into the products table. As this is only a test, one product will be sufficient.
+		> Rick click the table dbo.Products and Select 'View Data'
+		> Input the following data into its corresponding column:
+		
+				Name: Atopica
+				Date: 03/01/2021
+				Date: 06/30/2021
+				Description: Receive $10 rebate when you purchase a 15 mL bottle of Atopica®
+				Filter: Pet
+				File: Atopica_For_Cats_Oral_Solution_5ml_Pack.jpg
+				Logo: Atopica.jpg
+		
+Step 7: > Right click the database you created 
+		> Properties
+		> On the properties panel, find connection string
+		> Copy the whole connection string
+		
+Step 8: > Using solution explorer
+		> Open Database folder
+		> ConnectionString.cs
+		> paste the connection string inside the empty brackets inside the function @"";
+		
+Software should run correctly.
