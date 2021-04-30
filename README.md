@@ -1,3 +1,5 @@
+IMPORTANT: This project will not run correctly until you follow the provided SQL Setup guide
+
 This is the most recent collaborative work however due to our local servers not 
 allowing us to share a database in Github it limited all of us to not being able to test anything, 
 just adding code from previous testing. So, we decided that it would be best to finish off the code on one person’s machine, 
