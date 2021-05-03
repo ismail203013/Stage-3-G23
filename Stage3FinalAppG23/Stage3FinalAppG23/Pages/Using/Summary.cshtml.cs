@@ -122,9 +122,6 @@ namespace Stage3FinalAppG23.Pages.Using
             };
             if (CurrentPet.DOB != "Not Set")
             {
-                CultureInfo ci = new CultureInfo("en-Us");
-                Thread.CurrentThread.CurrentCulture = ci;
-
                 DateTime Date = DateTime.Parse(CurrentPet.DOB);
                 CurrentPet.DOB = Date.ToString("MM/dd/yyyy");
             }
